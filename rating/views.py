@@ -1,11 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import permissions
-from django.shortcuts import render
 
 from .serializers import RatingSerializer
-from rating.models import Rating, Review
+from rating.models import Rating
+
 
 class RatingListApiView(APIView):
     # add permission to check if user is authenticated
@@ -16,7 +15,7 @@ class RatingListApiView(APIView):
         '''
         List all the todo items for given requested user
         '''
-        ratings = Rating.objects.all() # filter(user = request.user.id)
+        ratings = Rating.objects.all()  # filter(user = request.user.id)
         serializer = RatingSerializer(ratings, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -26,8 +25,8 @@ class RatingListApiView(APIView):
     #     Create the Todo with given todo data
     #     '''
     #     data = {
-    #         'task': request.data.get('task'), 
-    #         'completed': request.data.get('completed'), 
+    #         'task': request.data.get('task'),
+    #         'completed': request.data.get('completed'),
     #         'user': request.user.id
     #     }
     #     serializer = TodoSerializer(data=data)
@@ -36,4 +35,3 @@ class RatingListApiView(APIView):
     #         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-

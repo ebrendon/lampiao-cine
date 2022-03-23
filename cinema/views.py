@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from models import Movie, Cinema, Ticket
 
-# Create your views here.
+
+def list(request):
+    pass

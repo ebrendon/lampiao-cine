@@ -11,28 +11,32 @@ class Movie(models.Model):
         ('NC-17', 'Adults only')
     ]
 
-    title = models.CharField(max_length=100, unique=True)
-    poster = models.TextField()
-    description = models.TextField()
-    ratingAverage = models.IntegerField()
-    duration = models.IntegerField()
-    genre = models.CharField(max_length=100)
-    ageGroup = models.CharField(max_length=5, choices=RATING_MOVIE_CHOICES)
+    title = models.CharField('título', max_length=100, unique=True)
+    poster = models.TextField('pôster')
+    description = models.TextField('descrição')
+    ratingAverage = models.IntegerField('pontuação')
+    duration = models.IntegerField('duração')
+    genre = models.CharField('gênero', max_length=100)
+    ageGroup = models.CharField(
+        'classificação indicativa', max_length=5, choices=RATING_MOVIE_CHOICES)
 
 
 class Cinema(models.Model):
-    name = models.CharField(max_length=200)
-    city = models.CharField(max_length=200)
-    street = models.CharField(max_length=500)
-    location_number = models.IntegerField()
-    movies = models.ManyToManyField(Movie)
+    name = models.CharField('nome', max_length=200)
+    city = models.CharField('cidade', max_length=200)
+    street = models.CharField('rua', max_length=500)
+    location_number = models.IntegerField('número')
+    movies = models.ManyToManyField(Movie, verbose_name='filmes')
 
 
 class Ticket(models.Model):
-    price = models.IntegerField()
-    schedule = models.DateTimeField()
-    chair = models.IntegerField()
-    room = models.IntegerField()
-    theater = models.ForeignKey(Cinema, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    price = models.IntegerField('preço')
+    schedule = models.DateTimeField('horário')
+    chair = models.IntegerField('cadeira')
+    room = models.IntegerField('sala')
+    theater = models.ForeignKey(
+        Cinema, on_delete=models.CASCADE, verbose_name='teatro')
+    movie = models.ForeignKey(
+        Movie, on_delete=models.CASCADE, verbose_name='cinema')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='usuário')
