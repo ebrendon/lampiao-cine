@@ -1,7 +1,11 @@
-# from django.conf.urls import url
 from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('list/', views.RatingListApiView.as_view()),
-]
+    path('listRating/', views.listRating),
+    path('listReview/', views.listReview),
+    path('deleteRating/', views.deleteRating),
+    path('deleteReview/', views.deleteReview),
+    path('createRating/', views.createRating),
+    path('createReview/', views.createReview),
+] 

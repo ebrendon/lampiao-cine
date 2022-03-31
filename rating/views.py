@@ -1,3 +1,4 @@
+import imp
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -6,34 +7,45 @@ from django.shortcuts import render
 
 from .serializers import RatingSerializer
 from rating.models import Rating, Review
+from .forms import ReviewForm
+from django.http import HttpResponse
+from .models import Review
 
-class RatingListApiView(APIView):
-    # add permission to check if user is authenticated
-    # permission_classes = [permissions.IsAuthenticated]
+# # 1. List all
+def listRating(request): 
 
-    # 1. List all
-    def get(self, request, *args, **kwargs):
-        '''
-        List all the todo items for given requested user
-        '''
-        ratings = Rating.objects.all() # filter(user = request.user.id)
-        serializer = RatingSerializer(ratings, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    ratings = Rating.objects.all()
+    ratings_dict = {'ratings': ratings}
 
-    # # 2. Create
-    # def post(self, request, *args, **kwargs):
-    #     '''
-    #     Create the Todo with given todo data
-    #     '''
-    #     data = {
-    #         'task': request.data.get('task'), 
-    #         'completed': request.data.get('completed'), 
-    #         'user': request.user.id
-    #     }
-    #     serializer = TodoSerializer(data=data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return render(request, 'listRatings.html', ratings_dict)
 
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+def listReview(request): 
 
+    reviews = Review.objects.all()
+    reviews_dict = {'reviews': reviews}
+
+    return render(request, 'listReview.html', reviews_dict)
+
+def deleteRating(request):
+    pass
+
+def deleteReview(request):
+    pass
+
+def createRating(request):
+    pass
+
+def createReview(request): 
+    if request.method == 'POST': 
+        form = ReviewForm(request.POST)
+         
+        if form.is_valid():
+            review = form.cleaned_data.get('review')
+            r = Review(review=review)
+            r.save() 
+            return HttpResponse()
+ 
+    else:
+        form = ReviewForm()
+
+    return render(request, 'createReview.html', {'form': form})

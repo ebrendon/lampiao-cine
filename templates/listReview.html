@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Seus Reviews</h1>
+
+{% for review in reviews %}
+<div>
+  <p>{{ review }}</p> 
+</div>
+{%endfor%}
+
+{% endblock %}

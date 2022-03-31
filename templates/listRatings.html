@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Suas Avaliações</h1>
+
+{%for rating in ratings %}
+<div>
+  <p>{{ rating.user }}</p>
+  <p>{{ rating.movie }}</p>
+  <p>{{ rating.score }}</p>
+</div>
+{%endfor%}
+
+{% endblock %}

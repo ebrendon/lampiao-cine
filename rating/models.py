@@ -4,11 +4,13 @@ from users.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Rating(models.Model):
+
     user = models.CharField(max_length=300)
     movie = models.CharField(max_length=300)
     score = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
+    
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
     # movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     # score = models.IntegerField(
@@ -20,8 +22,8 @@ class Rating(models.Model):
  
 
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     review = models.TextField(max_length=300)
 
     def __str__(self):
