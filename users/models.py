@@ -16,6 +16,5 @@ class User(models.Model):
 
 
 class WatchList(models.Model):
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     movies = models.ManyToManyField('cinema.Movie')
