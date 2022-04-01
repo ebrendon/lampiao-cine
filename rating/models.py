@@ -10,12 +10,14 @@ class Rating(models.Model):
     score = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
+    # review = models.TextField(max_length=300)
     
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
     # movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     # score = models.IntegerField(
     #     validators=[MinValueValidator(1), MaxValueValidator(5)]
     # )
+    # review = models.TextField(max_length=300)
 
     def __str__(self):
         return str(self.score)

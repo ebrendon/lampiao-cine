@@ -1,0 +1,4 @@
+<form action="{% url 'rating:rating_delete' rating.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete Rating">
+</form>

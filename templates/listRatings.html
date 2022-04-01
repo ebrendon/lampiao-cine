@@ -8,6 +8,7 @@
   <p>{{ rating.user }}</p>
   <p>{{ rating.movie }}</p>
   <p>{{ rating.score }}</p>
+  <a href="{% url 'deleteRating'  rating.id  %}">Delete</a>
 </div>
 {%endfor%}
 

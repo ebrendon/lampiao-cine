@@ -1,17 +1,8 @@
-import imp
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import permissions
-from django.shortcuts import render
-
-from .serializers import RatingSerializer
+from django.shortcuts import render, redirect
 from rating.models import Rating, Review
-from .forms import ReviewForm
-from django.http import HttpResponse
-from .models import Review
+from .forms import ReviewForm, RatingForm
+from django.http import HttpResponse, HttpResponseRedirect
 
-# # 1. List all
 def listRating(request): 
 
     ratings = Rating.objects.all()
@@ -26,14 +17,30 @@ def listReview(request):
 
     return render(request, 'listReview.html', reviews_dict)
 
-def deleteRating(request):
-    pass
+def deleteRating(request, pk):
+    r = Rating.objects.get(pk=pk)
+    r.delete()
+    return redirect('list-rating')  
+ 
 
-def deleteReview(request):
-    pass
+def deleteReview(request, pk):
+    r = Review.objects.get(pk=pk)
+    r.delete()
+    return redirect('list-review')
 
 def createRating(request):
-    pass
+    if request.method == 'POST': 
+        form = RatingForm(request.POST)
+         
+        if form.is_valid():
+            score = form.cleaned_data.get('score')
+            r = Rating(score=score)         # alterar este construtor  
+            r.save() 
+            return redirect('list-rating')  
+    else:
+        form = RatingForm()
+
+    return render(request, 'createRating.html', {'form': form})
 
 def createReview(request): 
     if request.method == 'POST': 
@@ -41,11 +48,17 @@ def createReview(request):
          
         if form.is_valid():
             review = form.cleaned_data.get('review')
-            r = Review(review=review)
+            r = Review(review=review)       # alterar este construtor 
             r.save() 
-            return HttpResponse()
+            return redirect('list-review') 
  
     else:
         form = ReviewForm()
 
     return render(request, 'createReview.html', {'form': form})
+
+def updateRating(request):
+    pass
+
+def updateReview(request):
+    pass
