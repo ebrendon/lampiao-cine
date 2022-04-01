@@ -3,11 +3,12 @@
 {% block content %}
 <h1>Suas Avaliações</h1>
 
-{%for rating in ratings %}
+{% for rating in ratings %}
 <div>
   <p>{{ rating.user }}</p>
   <p>{{ rating.movie }}</p>
   <p>{{ rating.score }}</p>
+  <p>{{ rating.review }}</p>
   <a href="{% url 'deleteRating'  rating.id  %}">Delete</a>
 </div>
 {%endfor%}

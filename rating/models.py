@@ -5,12 +5,15 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Rating(models.Model):
 
-    user = models.CharField(max_length=300)
-    movie = models.CharField(max_length=300)
+    user = models.CharField(max_length=100)
+    movie = models.CharField(max_length=200)
+    review = models.CharField(max_length=300, default='')
     score = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
-    # review = models.TextField(max_length=300)
+
+    def __str__(self):
+        return "Rating: {}, Review: {}".format(self.score, self.review)
     
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
     # movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
@@ -18,10 +21,7 @@ class Rating(models.Model):
     #     validators=[MinValueValidator(1), MaxValueValidator(5)]
     # )
     # review = models.TextField(max_length=300)
-
-    def __str__(self):
-        return str(self.score)
- 
+  
 
 class Review(models.Model):
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -29,4 +29,4 @@ class Review(models.Model):
     review = models.TextField(max_length=300)
 
     def __str__(self):
-        return self.review
+        return str(self.review)
