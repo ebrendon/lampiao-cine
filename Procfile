@@ -1,1 +1,1 @@
-web: gunicorn lampiao-cine.wsgi
+web: gunicorn lampiao_cine.wsgi
