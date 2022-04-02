@@ -1,11 +1,25 @@
-{% extends "base_generic.html" %}
-{% block content %}
+{% extends "base_generic.html" %} {% block content %}
 
 <form action="" method="post">
-    <h1>Rating</h1>
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="OK">
+	<div class="container-fluid">
+		<h1>Rating</h1>
+        
+		<div class="fieldWrapper">
+			{{ form.score.errors }}
+			<label for="{{ form.subject.id_for_label }}">Rating</label>
+			{{ form.score }}
+		</div>
+		<div class="fieldWrapper">
+			{{ form.review.errors }}
+			<label for="{{ form.message.id_for_label }}">Review</label>
+			{{ form.review }}
+		</div> 
+
+		<!-- {{ form }} -->
+        {% csrf_token %}
+		<input type="submit" value="OK" />
+ 
+	</div>
 </form>
-  
+
 {% endblock %}

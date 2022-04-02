@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from rating.models import Rating
 from .forms import RatingForm
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages 
 
 def listRating(request): 
 
@@ -20,6 +21,8 @@ def listRating(request):
 def deleteRating(request, pk):
     r = Rating.objects.get(pk=pk)
     r.delete()
+
+    messages.success(request, 'Removido com Sucesso')
     return redirect('list-rating')  
  
 
@@ -41,6 +44,8 @@ def createRating(request):
             # Alterar este Construtor  
             r = Rating(score=score, review=review)   
             r.save() 
+
+            messages.success(request, 'Adicionado com Sucesso')
             return redirect('list-rating')  
     else:
         form = RatingForm()
