@@ -23,7 +23,7 @@ class Rating(models.Model):
     # score = models.IntegerField(
     #     validators=[MinValueValidator(1), MaxValueValidator(5)]
     # )
-    # review = models.TextField(max_length=300)
+    # review = models.CharField(max_length=300, default='')
   
 
 # class Review(models.Model):

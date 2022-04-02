@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'rating',
     'rest_framework',
     'django.contrib.humanize', 
+    'paypal.standard.ipn',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
