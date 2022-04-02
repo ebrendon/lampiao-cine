@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from rating.models import Rating
 from .forms import RatingForm
 from django.http import HttpResponse, HttpResponseRedirect
@@ -11,25 +11,13 @@ def listRating(request):
 
     return render(request, 'listRatings.html', ratings_dict)
 
-# def listReview(request): 
-
-#     reviews = Review.objects.all()
-#     reviews_dict = {'reviews': reviews}
-
-#     return render(request, 'listReview.html', reviews_dict)
-
 def deleteRating(request, pk):
     r = Rating.objects.get(pk=pk)
     r.delete()
 
+    # Framework de Mensagens
     messages.success(request, 'Removido com Sucesso')
     return redirect('list-rating')  
- 
-
-# def deleteReview(request, pk):
-#     r = Review.objects.get(pk=pk)
-#     r.delete()
-#     return redirect('list-review')
 
 def createRating(request):
     if request.method == 'POST': 
@@ -38,9 +26,7 @@ def createRating(request):
         if form.is_valid():
             score = form.cleaned_data.get('score')
             review = form.cleaned_data.get('review')
-            print("-----------")
-            print(review)
-            print("-----------")
+
             # Alterar este Construtor  
             r = Rating(score=score, review=review)   
             r.save() 
@@ -52,21 +38,15 @@ def createRating(request):
 
     return render(request, 'createRating.html', {'form': form})
 
-# def createReview(request): 
-#     if request.method == 'POST': 
-#         form = ReviewForm(request.POST)
-         
-#         if form.is_valid():
-#             review = form.cleaned_data.get('review')
-#             r = Review(review=review)       # alterar este construtor 
-#             r.save() 
-#             return redirect('list-review') 
- 
-#     else:
-#         form = ReviewForm()
+def updateRating(request, pk): 
+    r = Rating.objects.get(pk=pk)
 
-#     return render(request, 'createReview.html', {'form': form})
+    if request.method == 'POST':
+        form = RatingForm(request.POST, instance=r)
+        if form.is_valid():
+            form.save()
+            return redirect('list-rating') 
+    else:
+        form = RatingForm(instance=r)
 
-def updateRating(request):
-    pass
- 
+    return render(request, 'createRating.html', {'form': form})

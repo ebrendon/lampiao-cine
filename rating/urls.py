@@ -4,11 +4,7 @@ from . import views
 
 urlpatterns = [
     path('listRating/', views.listRating, name='list-rating'),
-    path('deleteRating/<pk>', views.deleteRating, name="deleteRating"),
-    path('createRating/', views.createRating),
-    path('updateRating/', views.updateRating),
-    # path('listReview/', views.listReview, name='list-review'),
-    # path('deleteReview/<pk>', views.deleteReview, name="deleteReview"),
-    # path('createReview/', views.createReview),
-    # path('updateReview/', views.updateReview),
+    path('deleteRating/<pk>', views.deleteRating, name="delete-rating"),
+    path('createRating/', views.createRating, name='create-rating' ),
+    path('updateRating/<pk>', views.updateRating, name='update-rating'),
 ] 

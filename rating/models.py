@@ -26,10 +26,10 @@ class Rating(models.Model):
     # review = models.TextField(max_length=300)
   
 
-class Review(models.Model):
+# class Review(models.Model):
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
     # movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    review = models.TextField(max_length=300)
+    # review = models.TextField(max_length=300)
 
-    def __str__(self):
-        return str(self.review)
+    # def __str__(self):
+    #     return str(self.review)

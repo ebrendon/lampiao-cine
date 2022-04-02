@@ -9,7 +9,8 @@
   <p>{{ rating.movie }}</p>
   <p>{{ rating.score }}</p>
   <p>{{ rating.review }}</p>
-  <a href="{% url 'deleteRating'  rating.id  %}">Delete</a>
+  <a href="{% url 'delete-rating'  rating.id  %}">Delete</a>
+  <a href="{% url 'update-rating'  rating.id  %}">Alterar</a>
 </div>
 {%endfor%}
 
