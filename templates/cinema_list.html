@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Página de Cinemas</h1>
+{% for cinema in cinema_list %}
+
+<a href="{% url 'cinema_detail' cinema.pk %}">
+  <p>{{ cinema.name }}</p>
+</a>
+
+{% endfor %} {% endblock content %}

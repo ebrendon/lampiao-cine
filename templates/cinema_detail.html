@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Página de detalhe do Cinema</h1>
+
+<h3>Nome do cinema:</h3>
+<p>{{ cinema_detail.name }}</p>
+
+<h4>Filmes nesse cinema:</h4>
+{% for movie in cinema_detail.movies.all %}
+<a href="{% url 'movie_detail' movie.pk %}">
+  <img src="{{ movie.poster }}" alt="Movie Poster" />
+  <p>{{ movie.title }}</p>
+</a>
+{% endfor %}
+<h4>Ingressos nesse cinema</h4>
+{% for ticket in tickets %}
+<div style="background-color: blue">
+  <p>Sala: {{ ticket.room }}</p>
+  <p>Cadeira: {{ ticket.chair }}</p>
+  <p>Preço: {{ ticket.price }}</p>
+</div>
+
+{% endfor %} {% endblock content %}

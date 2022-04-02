@@ -5,29 +5,15 @@ from cinema.models import Cinema, Ticket, Movie
 
 class ListMoviesView(ListView):
     model = Movie
-    template_name = 'movies.html'
+    template_name = 'movie_list.html'
     context_object_name = 'movies_list'
     http_method_names = ['get']
 
 
-class DetailMovieView(ListView):
+class DetailMovieView(DetailView):
     model = Movie
-    template_name = 'movie.html'
+    template_name = 'movie_detail.html'
     context_object_name = 'movie_detail'
-    http_method_names = ['get']
-
-
-class ListTicketView(ListView):
-    model = Ticket
-    template_name = 'tickets.html'
-    context_object_name = 'tickets_list'
-    http_method_names = ['get']
-
-
-class DetailTicketView(DetailView):
-    model = Ticket
-    template_name = 'ticket.html'
-    context_object_name = 'ticket_detail'
     http_method_names = ['get']
 
 
@@ -38,13 +24,19 @@ class BuyTicketView(UpdateView):
 
 class ListCinemaView(ListView):
     model = Cinema
-    template_name = 'cinemas.html'
+    template_name = 'cinema_list.html'
     context_object_name = 'cinema_list'
     http_method_names = ['get']
 
 
 class DetailCinemaView(DetailView):
     model = Cinema
-    template_name = 'cinema.html'
+    template_name = 'cinema_detail.html'
     context_object_name = 'cinema_detail'
     http_method_names = ['get']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cinema_id = context['cinema_detail'].id
+        context['tickets'] = Ticket.objects.filter(cinema=cinema_id)
+        return context
