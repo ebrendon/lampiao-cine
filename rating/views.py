@@ -1,39 +1,52 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import permissions
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from rating.models import Rating
+from .forms import RatingForm
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages 
 
-from .serializers import RatingSerializer
-from rating.models import Rating, Review
+def listRating(request): 
 
-class RatingListApiView(APIView):
-    # add permission to check if user is authenticated
-    # permission_classes = [permissions.IsAuthenticated]
+    ratings = Rating.objects.all()
+    ratings_dict = {'ratings': ratings}
 
-    # 1. List all
-    def get(self, request, *args, **kwargs):
-        '''
-        List all the todo items for given requested user
-        '''
-        ratings = Rating.objects.all() # filter(user = request.user.id)
-        serializer = RatingSerializer(ratings, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    return render(request, 'listRatings.html', ratings_dict)
 
-    # # 2. Create
-    # def post(self, request, *args, **kwargs):
-    #     '''
-    #     Create the Todo with given todo data
-    #     '''
-    #     data = {
-    #         'task': request.data.get('task'), 
-    #         'completed': request.data.get('completed'), 
-    #         'user': request.user.id
-    #     }
-    #     serializer = TodoSerializer(data=data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+def deleteRating(request, pk):
+    r = Rating.objects.get(pk=pk)
+    r.delete()
 
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # Framework de Mensagens
+    messages.success(request, 'Removido com Sucesso')
+    return redirect('list-rating')  
 
+def createRating(request):
+    if request.method == 'POST': 
+        form = RatingForm(request.POST)
+         
+        if form.is_valid():
+            score = form.cleaned_data.get('score')
+            review = form.cleaned_data.get('review')
+
+            # Alterar este Construtor  
+            r = Rating(score=score, review=review)   
+            r.save() 
+
+            messages.success(request, 'Adicionado com Sucesso')
+            return redirect('list-rating')  
+    else:
+        form = RatingForm()
+
+    return render(request, 'createRating.html', {'form': form})
+
+def updateRating(request, pk): 
+    r = Rating.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = RatingForm(request.POST, instance=r)
+        if form.is_valid():
+            form.save()
+            return redirect('list-rating') 
+    else:
+        form = RatingForm(instance=r)
+
+    return render(request, 'createRating.html', {'form': form})
