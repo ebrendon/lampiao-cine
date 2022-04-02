@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from rating.models import Rating
 from .forms import RatingForm
 from django.http import HttpResponse, HttpResponseRedirect
