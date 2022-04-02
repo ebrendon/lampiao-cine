@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %} 
+
+{% block content %}
+
+<form action="" method="post">
+	<div class="container-fluid">
+		<h1>Rating & Review</h1>
+        
+		<div class="fieldWrapper">
+			{{ form.score.errors }}
+			<label for="{{ form.subject.id_for_label }}">Rating</label>
+			{{ form.score }}
+		</div>
+		<div class="fieldWrapper">
+			{{ form.review.errors }}
+			<label for="{{ form.message.id_for_label }}">Review</label>
+			{{ form.review }}
+		</div> 
+ 
+        {% csrf_token %}
+		<input type="submit" value="OK" />
+ 
+	</div>
+</form>
+
+{% endblock %}
