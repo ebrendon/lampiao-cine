@@ -1,6 +1,4 @@
-{% extends "base_generic.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <h1>Suas Avaliações</h1>
 
 {% for rating in ratings %}
@@ -12,6 +10,4 @@
   <a href="{% url 'delete-rating'  rating.id  %}">Delete</a>
   <a href="{% url 'update-rating'  rating.id  %}">Alterar</a>
 </div>
-{%endfor%}
-
-{% endblock %}
+{%endfor%} {% endblock %}
