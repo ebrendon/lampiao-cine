@@ -1,0 +1,15 @@
+<div class="card" style="width: 100%">
+  <img
+    src="{{ movie.poster }}"
+    class="card-img-top"
+    alt="Poster do filme {{ movie.title }}"
+    style="height: 20rem; object-fit: contain"
+  />
+  <div class="card-body" style="height: 13rem">
+    <h5 class="card-title">{{ movie.title }}</h5>
+    <p class="card-text limited-lines-block">{{ movie.description }}</p>
+    <a href="{% url 'movie_detail' movie.pk %}" class="btn btn-primary"
+      >Ver detalhes</a
+    >
+  </div>
+</div>

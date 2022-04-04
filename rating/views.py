@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from rating.models import Rating
 from .forms import RatingForm
-from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 
 

@@ -1,22 +1,95 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Página de detalhe do Cinema</h1>
-
-<h3>Nome do cinema:</h3>
-<p>{{ cinema_detail.name }}</p>
-
-<h4>Filmes nesse cinema:</h4>
-{% for movie in cinema_detail.movies.all %}
-<a href="{% url 'movie_detail' movie.pk %}">
-  <img src="{{ movie.poster }}" alt="Movie Poster" />
-  <p>{{ movie.title }}</p>
-</a>
-{% endfor %}
-<h4>Ingressos nesse cinema</h4>
-{% for ticket in tickets %}
-<div style="background-color: blue">
-  <p>Sala: {{ ticket.room }}</p>
-  <p>Cadeira: {{ ticket.chair }}</p>
-  <p>Preço: {{ ticket.price }}</p>
+<div
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="tickets-modal"
+  aria-hidden="true"
+  id="tickets-modal"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Bilhetes</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body-ticket"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
+<section class="container py-4">
+  <h3>{{ cinema.name }}</h3>
 
-{% endfor %} {% endblock content %}
+  <section class="my-4">
+    <h4>Filmes em cartaz:</h4>
+    <section class="movies-grid">
+      {% for movie in cinema.movies.all %}
+      <div class="card" style="width: 100%">
+        <img
+          src="{{ movie.poster }}"
+          class="card-img-top"
+          alt="Poster do filme {{ movie.title }}"
+          style="height: 20rem; object-fit: contain"
+        />
+        <div class="card-body" style="height: 13rem">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text limited-lines-block">{{ movie.description }}</p>
+          <button id="{{ movie.id }}" class="btn btn-primary see-tickets"
+            >Ver bilhetes</a
+          >
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+  </section>
+
+  
+</section>
+
+{{ tickets|json_script:"tickets" }}
+<script>
+  const elements = document.getElementsByClassName("see-tickets");
+  const tickets = JSON.parse(
+    JSON.parse(document.getElementById("tickets").textContent)
+  );
+
+  Array.from(elements).forEach((element) => {
+    element.addEventListener("click", (e) => {
+      e.preventDefault();
+      const movieId = e.target.id;
+      const ticketsFromMovie = tickets.filter(
+        (ticket) => Number(ticket.pk) === Number(movieId)
+      );
+      let ticketsContent = "";
+      if (ticketsFromMovie.length) {
+        const ticketsContent = ticketsFromMovie.map(
+          (ticket) => `
+        <div style="background-color: blue">
+          <p>Preço: R$ ${ticket.price}</p>
+          <p>Cadeira:  ${ticket.chair} </p>
+          <p>Sala: ${ticket.room} </p>
+          <p>Horário: ${ticket.schedule}</p>
+        </div>
+        `
+        );
+      } else ticketsContent = "<h5>Sem bilhetes para esse filme :C</h5>";
+
+      document.getElementById("modal-body-ticket").innerHTML = ticketsContent;
+
+
+    });
+  });
+</script>
+{% endblock %}

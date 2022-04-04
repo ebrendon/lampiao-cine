@@ -1,18 +1,10 @@
-{% extends "base.html" %} {% load humanize %} {% block content %}
-<h1>LampiãoCine</h1>
-<h2>Seu cinema cabra da peste</h2>
-
-<d iv class="container">
-  <div class="row">
-    <h1>Rating & Review</h1>
-  </div>
-  <div class="row">
-    <div class="col-3">
-      <a href="{% url 'list-rating' %}">Ver seus Reviews</a>
-    </div>
-    <div class="col-3">
-      <a href="{% url 'create-rating' %}">Fazer um Review</a>
-    </div>
-  </div>
-</d>
+{% extends "base.html" %} {% block content %}
+<section class="container py-4">
+  <h1 class="mb-5">Bem vindo a nossa página!</h1>
+  <section class="mb-5">{% include 'cinema_list.html' %}</section>
+  <section>
+    <h3>Filmes em cartaz</h3>
+    {% include 'movie_list.html' %}
+  </section>
+</section>
 {% endblock %}
