@@ -1,12 +1,20 @@
 {% extends 'base.html' %} {% block content %}
+
 <h1>Página de detalhe do filme</h1>
+
 <p>{{ movie_detail.title }}</p>
 <p>{{ movie_detail.description }}</p>
 <p>{{ movie_detail.ageGroup }}</p>
+
+<h3>Rating & Review</h3>
+<a href="{% url 'create-rating' movie_detail.id  %}">Faça sua Avaliação</a>
+
 <h3>Votação geral:</h3>
 <p>{{ movie_detail.ratingAverage }}</p>
 
-<h4>Cinemas que estão passando esse filme</h4>
+<h3>Cinemas que estão passando esse filme</h3>
 {% for cinema in movie_detail.cinema_set.all %}
 <a>{{ cinema.name }}</a>
-{% endfor %} {% endblock content %}
+{% endfor %}
+  
+{% endblock content %}

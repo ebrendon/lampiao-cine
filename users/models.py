@@ -5,6 +5,9 @@ class Account(models.Model):
     email = models.CharField(max_length=250, unique=True)
     password = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.email
+
 
 class User(models.Model):
     name = models.CharField(max_length=50)
@@ -13,6 +16,9 @@ class User(models.Model):
     phone = models.CharField(max_length=100)
     city = models.CharField(max_length=200)
     country = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 
 class WatchList(models.Model):

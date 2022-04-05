@@ -5,6 +5,6 @@ from . import views
 urlpatterns = [
     path('listRating/', views.listRating, name='list-rating'),
     path('deleteRating/<pk>', views.deleteRating, name="delete-rating"),
-    path('createRating/', views.createRating, name='create-rating' ),
+    path('createRating/<pk>', views.createRating, name='create-rating' ),
     path('updateRating/<pk>', views.updateRating, name='update-rating'),
 ] 
