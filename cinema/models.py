@@ -63,3 +63,8 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f"{self.cinema.name} - Sala {str(self.room)} - Cadeira {str(self.chair)} "
+
+
+class WatchList(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    movies = models.ManyToManyField('cinema.Movie')
