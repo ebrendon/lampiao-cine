@@ -1,21 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+<section class="container mt-4">
+  <h2>{{ title }}</h2>
 
-{% load crispy_forms_tags %}
+  <hr />
 
-{% block content %}
-<h2>{{ title }}</h2>
+  <form action="" method="POST">
+    {% csrf_token %} {{ form|crispy}}
 
-<hr>
-
-<form action="" method="POST">
-
-    {% csrf_token %}
-    {{ form|crispy}}
-
-    <button type="submit" class="btn btn-light mt-3">
-        {{ button }}
-    </button>
-
-</form>
+    <button type="submit" class="btn btn-light mt-3">{{ button }}</button>
+  </form>
+</section>
 
 {% endblock %}

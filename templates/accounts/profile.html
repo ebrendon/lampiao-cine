@@ -1,25 +1,27 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <section class="section__profile">
-    <div class="content__profile">
-        <h2>Perfil</h2>
-        <h3>Olá, {{ user.username }}</h3>
-        <p>Nome: {{ user.profile.name }}</p>
-        <p>Sobrenome: {{ user.profile.lastName }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Birthdate: {{ user.profile.birthDate}}</p>
-        <p>Cidade: {{ user.profile.city }}</p>
-        <p>País: {{ user.profile.country }}</p>
-        <p>Fone: {{ user.profile.phone }}</p>
+  <div class="content__profile">
+    <h2>Perfil</h2>
+    <h3>Olá, {{ user.username }}</h3>
+    <p>Nome: {{ user.profile.name }}</p>
+    <p>Sobrenome: {{ user.profile.lastName }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Birthdate: {{ user.profile.birthDate}}</p>
+    <p>Cidade: {{ user.profile.city }}</p>
+    <p>País: {{ user.profile.country }}</p>
+    <p>Fone: {{ user.profile.phone }}</p>
 
-        <a href="{% url 'profile_update' %}" class="btn btn-light mt-3">Update</a>
-    </div>
-    <div class="content__img">
-
-    </div>
-
+    <a href="{% url 'profile_update' %}" class="btn btn-light mt-3"
+      >Atualizar</a
+    >
+    <a
+      href="{% url 'list-user-rating' %}"
+      class="btn btn-light mt-3"
+      style="width: fit-content"
+      >Ver minhas avaliações</a
+    >
+  </div>
+  <div class="content__img"></div>
 </section>
-
 
 {% endblock %}
