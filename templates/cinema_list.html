@@ -1,10 +1,24 @@
-{% extends 'base.html' %} {% block content %}
+<h3 class="mb-3">Lista de Cinemas</h3>
+<div class="list-group">
+  {% for cinema in cinemas %}
+  <a
+    class="list-group-item list-group-item-action"
+    href="{% url 'cinema_detail' cinema.pk %}"
+  >
+    <div class="d-flex w-100 justify-content-between">
+      <div
+        style="
+          background-color: var(--android-green);
+          padding: 0.3rem;
+          border-radius: 0.5rem;
+        "
+      >
+        <h5 class="mb-1" style="color: white">{{ cinema.name }}</h5>
+      </div>
+    </div>
+    <p class="mb-1">{{ cinema.city }}</p>
+    <small>Número {{ cinema.location_number }}</small>
+  </a>
 
-<h1>Página de Cinemas</h1>
-{% for cinema in cinema_list %}
-
-<a href="{% url 'cinema_detail' cinema.pk %}">
-  <p>{{ cinema.name }}</p>
-</a>
-
-{% endfor %} {% endblock content %}
+  {% endfor %}
+</div>

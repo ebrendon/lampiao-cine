@@ -20,10 +20,10 @@ from . import views
 from .views import AboutPageView
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', include('cinema.urls')),
     path("about/", AboutPageView.as_view(), name="about"),
     path('admin/', admin.site.urls),
     path('rating/', include('rating.urls')),
     path('movies/', include('cinema.urls')),
-    path('', include('users.urls')),
+    path('user/', include('users.urls')),
 ]

@@ -1,11 +1,22 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Página de filmes</h1>
+<section class="movies-grid">
+  {% for movie in movies %} {% include "movie_card.html" %} {% endfor %}
+</section>
+{% if page_obj.paginator.num_pages > 0 %}
+<div class="pagination py-3 mt-3 d-flex justify-content-end align-items-center">
+  <span class="step-links mx-3">
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; Primeiro</a>
+    <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% endif %}
 
-{% for movie in movies_list %}
+    <span class="current mx-3">
+      Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+    </span>
 
-<a href="{% url 'movie_detail' movie.pk %}">
-  <img src="{{ movie.poster }}" alt="Movie poster" />
-  <p>{{ movie.title }}</p>
-</a>
-
-{% endfor %} {% endblock content %}
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Próximo</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+{% endif %}

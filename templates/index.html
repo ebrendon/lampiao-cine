@@ -1,8 +1,10 @@
-{% extends "base.html" %}  {% block content %}
-
-
-<h1>LampiãoCine</h1>
-<h2>Seu cinema cabra da peste</h2>
- 
-
+{% extends "base.html" %} {% block content %}
+<section class="container py-4">
+  <h1 class="mb-5">Bem vindo a nossa página!</h1>
+  <section class="mb-5">{% include 'cinema_list.html' %}</section>
+  <section>
+    <h3>Filmes em cartaz</h3>
+    {% include 'movie_list.html' %}
+  </section>
+</section>
 {% endblock %}

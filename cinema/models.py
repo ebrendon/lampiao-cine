@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from users.models import User
 
 
@@ -49,7 +50,8 @@ class Cinema(models.Model):
 
 class Ticket(models.Model):
     price = models.IntegerField('preço')
-    schedule = models.DateTimeField('horário')
+    date = models.DateField('data', default=timezone.now)
+    time = models.TimeField('horário')
     chair = models.IntegerField('cadeira')
     room = models.IntegerField('sala')
     cinema = models.ForeignKey(

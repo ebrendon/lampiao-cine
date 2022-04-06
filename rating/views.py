@@ -5,9 +5,9 @@ from rating.models import Rating
 from users.models import User
 
 from .forms import RatingForm
-
 from django.contrib import messages
 from django.core.paginator import Paginator
+
 
 def listMovieRating(request, pk):
 
@@ -15,20 +15,22 @@ def listMovieRating(request, pk):
     paginator = Paginator(ratings, 5)
 
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)   
+    page_obj = paginator.get_page(page_number)
 
     return render(request, 'listMovieRatings.html', {'page_obj': page_obj})
+
 
 def listUserRating(request):
     user = User.objects.get(pk=request.user.id)
     ratings = Rating.objects.filter(user=user)
- 
+
     paginator = Paginator(ratings, 5)
 
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)   
-    
+    page_obj = paginator.get_page(page_number)
+
     return render(request, 'listUserRatings.html', {'page_obj': page_obj})
+
 
 def deleteRating(request, pk):
     r = Rating.objects.get(pk=pk)
@@ -38,13 +40,13 @@ def deleteRating(request, pk):
     return redirect('list-user-rating')
 
 
-def createRating(request, pk): 
+def createRating(request, pk):
 
     if request.method == 'POST':
         form = RatingForm(request.POST)
 
         if form.is_valid():
-            user = request.user 
+            user = request.user
             movie = Movie.objects.get(id=pk)
             user = User.objects.get(pk=user.id)
 
@@ -53,8 +55,8 @@ def createRating(request, pk):
             new_rating.user = user
             new_rating.score = form.cleaned_data.get('score')
             new_rating.review = form.cleaned_data.get('review')
-            new_rating.save() 
- 
+            new_rating.save()
+
             return redirect('list-movie-rating', pk=pk)
     else:
         form = RatingForm()
@@ -82,5 +84,3 @@ def updateRating(request, pk):
 #     movie_rating.aggregate(Avg('score'))
 
 #     render(request, 'averageRating.html', movie_rating)
-
-
