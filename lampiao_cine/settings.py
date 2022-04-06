@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import os 
+import os
 
 # import django_heroku
 
@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'users',
     'rating',
     'rest_framework',
-    'paypal.standard.ipn',
-
     # librarys
     'crispy_forms',
 
@@ -52,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-MIDDLEWARE = [ 
+MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
