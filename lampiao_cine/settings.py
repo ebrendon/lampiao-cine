@@ -14,11 +14,10 @@ import os
 from pathlib import Path
 import os 
 
+import django_heroku
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# AUTH_USER_MODEL = 'users.User'
-# REQUIRED_FIELDS = ['name']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -150,7 +149,7 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
 
@@ -171,3 +170,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'lampiaocinema@gmail.com'
 EMAIL_HOST_PASSWORD = 'cine225547'
+
+
+django_heroku.settings(locals())
