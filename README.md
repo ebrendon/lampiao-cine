@@ -1,3 +1,7 @@
 # LampiãoCine
 
-Projeto em Django para a disciplina de Sistemas Distribuídos. Consiste num sistema de avaliação parecido com IMDB + sistema de compra de ingressos para os filmes.
+Projeto em Django de um sistema de avaliação de filmes + sistema de compra de ingressos para cinemas
+
+
+#### Deploy
+https://lampiao-cine-1.herokuapp.com/
