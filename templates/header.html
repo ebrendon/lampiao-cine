@@ -2,31 +2,13 @@
   <section
     class="container d-flex flex-row justify-content-between align-items-center"
   >
-    <h1>Lampião Cine</h1>
-    <nav class="navbar navbar-expand-sm py-3 border-bottom navbar-light">
+    <a href="{% url 'home' %}" class="navbar-brand">
+      <h1>Lampião Cine</h1>
+    </a>
+    <nav class="navbar navbar-expand-sm py-3 navbar-light">
       <div class="container">
-        <a href="{% url 'home' %}" class="navbar-brand">
-          <span class="font-weight-bold h3">Lampiao Cine</span>
-        </a>
         <div>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link lead mr-4 font-weight-bold" href="#"
-                >Cinemas</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link lead mr-4 font-weight-bold"
-                href="{% url 'movie_list' %}"
-                >Filmes</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link lead mr-4 font-weight-bold" href="#"
-                >Ingressos</a
-              >
-            </li>
             <li class="nav-item">
               <a class="nav-link lead mr-4 font-weight-bold" href="#">Sobre</a>
             </li>
