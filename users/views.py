@@ -11,7 +11,7 @@ from .models import Profile
 
 # Create your views here.
 class UserCreate(CreateView):
-    template_name = 'form.html'
+    template_name = 'accounts/signup.html'
     form_class = UserForm
     success_url = reverse_lazy('login')
 
@@ -25,7 +25,7 @@ class UserCreate(CreateView):
     def get_context_data(self, *args,**kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        context['title'] = 'User Signup'
+        context['title'] = 'Cadastro'
         context['button'] = 'signup'
 
 

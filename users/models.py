@@ -15,3 +15,10 @@ class Profile(models.Model):
 
 
 
+class WatchList(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    movies = models.ManyToManyField('cinema.Movie')
+
+class Account(models.Model):
+    email = models.CharField(max_length=250, unique=True)
+    password = models.CharField(max_length=200)
