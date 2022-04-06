@@ -33,9 +33,7 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
-
-    def get_ratings(self):
-        return 1000
+ 
 
 
 class Cinema(models.Model):
