@@ -1,8 +1,13 @@
+import json
+import os
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView
 from django.views.generic.base import TemplateView
 from cinema.models import Cinema, Ticket, Movie
 from django.core import serializers
+import geocoder
+
+mapbox_access_token = os.environ.get('MAPBOX_ACCESS_TOKEN')
 
 
 class HomeView(ListView):
@@ -46,7 +51,25 @@ class DetailCinemaView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        cinema_id = context['cinema'].id
+        cinema = context['cinema']
+        cinema_id = cinema.id
         context['tickets'] = serializers.serialize(
             "json", Ticket.objects.filter(cinema=cinema_id))
+        cinema_location = geocoder.mapbox(
+            f"{cinema.city}, {cinema.street}", key=mapbox_access_token)
+        context['cinema_coordinates'] = json.dumps(
+            {"lat": cinema_location.lat, "long": cinema_location.lng})
+        context['mapbox_access_token'] = mapbox_access_token
         return context
+
+
+class ListTicketsFromMovie(ListView):
+    model = Ticket
+    template_name = 'tickets_list.html'
+    context_object_name = 'tickets'
+    http_method_names = ['get']
+
+    def get_queryset(self):
+        cinema_id = self.request.GET.get('cinema_id')
+        movie_id = self.request.GET.get('movie_id')
+        return self.objects.filter(cinema=cinema_id, movie=movie_id)

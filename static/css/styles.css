@@ -51,6 +51,13 @@ section.movies-grid {
     width: 100%;
 }
 
+div.tickets-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    width: 100%;
+}
+
 .limited-lines-block {
     display: -webkit-box;
     display: -moz-box;
@@ -88,4 +95,11 @@ d
 
 .pagination .step-links span {
     color: white;
+}
+
+.tickets-grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
 }
