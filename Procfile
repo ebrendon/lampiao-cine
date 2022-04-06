@@ -1,0 +1,1 @@
+web: gunicorn lampiao_cine.wsgi

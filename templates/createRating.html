@@ -1,22 +1,30 @@
 {% extends "base.html" %} {% block content %}
 
 <form action="" method="post">
-  <div class="container-fluid">
+  <div class="container">
     <h1>Rating & Review</h1>
-
-    <div class="fieldWrapper">
-      {{ form.score.errors }}
-      <label for="{{ form.subject.id_for_label }}">Rating</label>
-      {{ form.score }}
+    
+    <div class="col m-3">
+      <h3 for="{{ form.subject.id_for_label }}">Rating</h3>
+      <p class="font-italic">Entre 1 e 5, dê sua nota!</p>
+      
+        {{ form.score }}
+      
+        <p style="color:red">
+          {{ form.score.errors }}
+        </p>
     </div>
-    <div class="fieldWrapper">
+
+    <div class="col m-3">
+      <h3 for="{{ form.message.id_for_label }}">Review</h3>
+      <div>
+        {{ form.review }}
+      </div>
       {{ form.review.errors }}
-      <label for="{{ form.message.id_for_label }}">Review</label>
-      {{ form.review }}
     </div>
 
     {% csrf_token %}
-    <input type="submit" value="OK" />
+    <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
 

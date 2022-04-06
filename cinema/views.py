@@ -9,6 +9,17 @@ import geocoder
 
 mapbox_access_token = os.environ.get('MAPBOX_ACCESS_TOKEN')
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import MovieSerializer
+
+class MovieListAPIView(APIView): 
+ 
+    def get(self, request, *args, **kwargs):
+        movies = Movie.objects.all()
+        serializer = MovieSerializer(movies, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class HomeView(ListView):
     model = Movie

@@ -3,9 +3,67 @@
     class="container d-flex flex-row justify-content-between align-items-center"
   >
     <h1>Lampião Cine</h1>
-    <navbar class="header-navbar d-flex flex-row">
-      <a href="#" class="mr-5">Registrar</a>
-      <a href="#" class="mr-5">Login</a>
-    </navbar>
+    <nav class="navbar navbar-expand-sm py-3 border-bottom navbar-light">
+      <div class="container">
+        <a href="{% url 'home' %}" class="navbar-brand">
+          <span class="font-weight-bold h3">Lampiao Cine</span>
+        </a>
+        <div>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link lead mr-4 font-weight-bold" href="#"
+                >Cinemas</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link lead mr-4 font-weight-bold"
+                href="{% url 'movie_list' %}"
+                >Filmes</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link lead mr-4 font-weight-bold" href="#"
+                >Ingressos</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link lead mr-4 font-weight-bold" href="#">Sobre</a>
+            </li>
+          </ul>
+        </div>
+        <!-- <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"> </span>
+          </button> -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a
+                class="nav-link lead mr-4 font-weight-bold"
+                href="{% url 'profile' %}"
+                >Perfil</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link lead mr-4 font-weight-bold"
+                href="{% url 'logout' %}"
+                >Sair</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a
+                class="nav-link lead mr-4 font-weight-bold"
+                href="{% url 'login' %}"
+                >Entrar</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
   </section>
 </header>
