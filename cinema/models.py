@@ -6,7 +6,7 @@ class Movie(models.Model):
     RATING_MOVIE_CHOICES = [
         ('G', 'General Audiences'),
         ('PG', 'Parental Guidance Suggested'),
-        ('PG-13', 'PG-13 – Parents Strongly Cautioned'),
+        ('PG-13', 'PG-13 - Parents Strongly Cautioned'),
         ('R', 'Restricted'),
         ('NC-17', 'Adults only')
     ]
@@ -33,9 +33,7 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
-
-    def get_ratings(self):
-        return 1000
+ 
 
 
 class Cinema(models.Model):
@@ -63,3 +61,8 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f"{self.cinema.name} - Sala {str(self.room)} - Cadeira {str(self.chair)} "
+
+
+class WatchList(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    movies = models.ManyToManyField('cinema.Movie')

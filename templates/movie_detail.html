@@ -1,12 +1,75 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Página de detalhe do filme</h1>
-<p>{{ movie_detail.title }}</p>
-<p>{{ movie_detail.description }}</p>
-<p>{{ movie_detail.ageGroup }}</p>
-<h3>Votação geral:</h3>
-<p>{{ movie_detail.ratingAverage }}</p>
 
-<h4>Cinemas que estão passando esse filme</h4>
-{% for cinema in movie_detail.cinema_set.all %}
-<a>{{ cinema.name }}</a>
-{% endfor %} {% endblock content %}
+<div class="container">
+
+    <section>
+        <h1 class="mt-3">{{ movie_detail.title }}</h1>
+        
+        <div class="card p-4 m-3">
+            <h3 class="row">Informações</h3>
+                <div>
+                    <h5 >Descrição</h5>
+                    <p>{{ movie_detail.description }}</p>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>Classificação Indicativa</h5>
+                        <p>{{ movie_detail.ageGroup }}</p>
+                    </div>
+                    <div class="col">
+                        <h5>Gênero</h5>
+                        <p>{{ movie_detail.genre }}</p>
+                    </div>
+                    <div class="col">
+                        <h5>Duração</h5>
+                        <p>{{ movie_detail.duration }} minutos</p>
+                    </div>
+                </div>
+        </div>
+    </section>
+    
+    <section class="card p-4 m-3">
+        <h3>Rating & Review</h3>
+
+        
+        <div class="row">
+            {% if user.is_authenticated %}
+            <a class="col-3" href="{% url 'create-rating' movie_detail.id  %}">
+                <button type="button" class="btn btn-warning">
+                    Faça sua Avaliação
+                </button>
+            </a>
+            {% else %}
+            <a class="col-3" href="{% url 'login' %}">
+                <button type="button" class="btn btn-warning">
+                   Crie sua conta para avaliar
+                </button>
+            </a>
+            {% endif %}
+
+
+            <a class="col-3" href="{% url 'list-movie-rating' movie_detail.id  %}">
+                <button type="button" class="btn btn-warning">
+                    Ver Avaliações desse filme
+                </button>
+            </a> 
+
+        </div>
+    </section>
+    
+    <section class="card p-4 m-3">
+        <h3>Pontuação Geral</h3>
+        <p>{{ movie_detail.ratingAverage }}</p>
+    </section>    
+    
+    <section class="card p-4 m-3">
+        <h3>Cinemas que estão passando esse filme</h3>
+        {% for cinema in movie_detail.cinema_set.all %}
+        <a>{{ cinema.name }}</a>
+        {% endfor %}
+    </section>
+    
+    {% endblock content %}
+    
+    <h1>Avaliações</h1>
+</div>

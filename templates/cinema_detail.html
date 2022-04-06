@@ -7,16 +7,16 @@
 <h4>Filmes nesse cinema:</h4>
 {% for movie in cinema_detail.movies.all %}
 <a href="{% url 'movie_detail' movie.pk %}">
-  <img src="{{ movie.poster }}" alt="Movie Poster" />
-  <p>{{ movie.title }}</p>
+	<img src="{{ movie.poster }}" alt="Movie Poster" />
+	<p>{{ movie.title }}</p>
 </a>
 {% endfor %}
 <h4>Ingressos nesse cinema</h4>
 {% for ticket in tickets %}
 <div style="background-color: blue">
-  <p>Sala: {{ ticket.room }}</p>
-  <p>Cadeira: {{ ticket.chair }}</p>
-  <p>Preço: {{ ticket.price }}</p>
+	<p>Sala: {{ ticket.room }}</p>
+	<p>Cadeira: {{ ticket.chair }}</p>
+	<p>Preço: {{ ticket.price }}</p>
 </div>
 
 {% endfor %} {% endblock content %}
