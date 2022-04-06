@@ -1,0 +1,158 @@
+body {
+
+    margin: 0px 100px 0px 100px ;
+    
+}
+
+
+/* ========================== LOGIN CSS ========================== */
+.section__login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    height: auto;
+}
+
+.content__login {
+    display: flex;
+    flex-direction: row;
+    min-height: 400px;
+    max-height: 550px;
+    width: 1000px;
+    box-shadow: -2px 2px 6px 2px #b87d4b;
+}
+
+.login__form {
+    width: 40%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login__form form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#form-btn {
+    width: 100px;
+    color: white;
+    background-color: #b87d4b;
+}
+
+#form-btn:hover {
+    background-color: #523a34;  
+}
+
+.login__lateral {
+    width: 60%;
+    min-height: 400px;
+    max-height: 550px;
+    background-image: url(/static/img/posters.jpg);
+    background-size: cover;
+}
+
+
+/* ========================== PROFILE CSS ========================== */
+
+.section__profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    height: 600px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.content__profile {
+    width: 50%;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.content__profile a {
+    width: 100px;
+    color: white;
+    background-color: #b87d4b; 
+}
+
+.content__profile a:hover{
+    color: white;
+    background-color: #523a34;
+}
+
+.content__img {
+    width: 50%;
+    height: 100%;
+    background-image: url(/static/img/In\ the\ Storm\,\ Procreate\,\ 8x10in.jpg);
+    background-size: cover;
+}
+
+/* ========================== RESET PASSOWROD CSS ========================== */
+.content__reset-pass {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.content__reset-pass form {
+    width: 60%;
+}
+
+.content__reset-pass form button {
+    width: 100px;
+    color: white;
+    background-color: #b87d4b; 
+}
+
+.content__reset-pass form button:hover {
+    color: white;
+    background-color: #523a34;
+}
+
+/* ========================== SIGNUP CSS ========================== */
+
+.section__signup {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 80%;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: -2px 2px 6px 2px #b87d4b;
+}
+
+.content__signup {
+    width: 60%;
+    padding: 20px;
+}
+
+.content__signup form button {
+    width: 100px;
+    color: white;
+    background-color: #b87d4b;  
+}
+
+.content__signup form button:hover {
+    color: white;
+    background-color: #523a34;  
+}
+
+.content__img-lateral{
+    width: 40%;
+    height: 100%;
+    background-color: #b87d4b;
+}
+
+.content__img-signup {
+    width: 100%;
+    height: 100%;
+    background-image: url(/static/img/logo-vertical-alta.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}

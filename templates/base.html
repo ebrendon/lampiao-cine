@@ -11,6 +11,7 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
     <title>{% block tittle %}Lampiao Cine{% endblock tittle %}</title>
 </head>
 
@@ -32,7 +33,7 @@
                         <a class="nav-link  lead mr-4 font-weight-bold" href="#">Ingressos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link lead mr-4 font-weight-bold" href="#">Sobre</a>
+                        <a class="nav-link lead mr-4 font-weight-bold" href="{% url 'about' %}">Sobre</a>
                     </li>
                 </ul>
             </div>
